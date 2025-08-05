@@ -35,7 +35,7 @@ async function remove(bugId) {
 }
 
 async function save(bug) {
-    var queryStr = `/save?title=${bug.title}&severity=${bug.severity}`    
+    var queryStr = `/save?title=${bug.title}&severity=${bug.severity}&description=${bug.description}`    
 	if (bug._id) queryStr += `&_id=${bug._id}`
 
     const res = await axios.get(BASE_URL + queryStr)
