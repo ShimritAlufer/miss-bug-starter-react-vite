@@ -28,6 +28,7 @@ export function BugDetails() {
     }
 
     if (!bug) return <h1>loadings....</h1>
+
     return <div className="bug-details main-layout">
         <h3>Bug Details 🐛</h3>
         <h4>{bug.title}</h4>
@@ -36,7 +37,9 @@ export function BugDetails() {
             <h5>Description</h5>
             <p>{bug.description}</p>
         </section>
-        <Link to="/bug">Back to List</Link>
+        
+        <section><button><Link to="/bug">Back to List</Link></button></section>
+        
     </div>
 
 }

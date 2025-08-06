@@ -14,7 +14,7 @@ export function BugList({ bugs, onRemoveBug, onEditBug }) {
                 onRemoveBug(bug._id)
               }}
             >
-              x
+              Delete
             </button>
             <button
               onClick={() => {
@@ -24,7 +24,7 @@ export function BugList({ bugs, onRemoveBug, onEditBug }) {
               Edit
             </button>
           </div>
-          <Link to={`/bug/${bug._id}`}>Details</Link>
+          <button><Link to={`/bug/${bug._id}`}>Details</Link></button>
         </li>
       ))}
     </ul>
