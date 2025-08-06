@@ -4,6 +4,7 @@ import { BugList } from '../cmps/BugList.jsx'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { BugFilter } from '../cmps/BugFilter.jsx'
+import { downloadPDFBugs } from '../services/bugPdf.service.js'
 
 
 export function BugIndex() {
@@ -76,6 +77,9 @@ export function BugIndex() {
         <button onClick={onAddBug}>Add Bug ⛐</button>
         <BugFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy}/>
         <BugList bugs={bugs} onRemoveBug={onRemoveBug} onEditBug={onEditBug} />
+        <button onClick={() => downloadPDFBugs(bugs)}>
+          Download Bugs as PDF file
+        </button>
       </main>
     </main>
   )
