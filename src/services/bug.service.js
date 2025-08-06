@@ -1,7 +1,3 @@
-
-import { storageService } from './async-storage.service.js'
-import { utilService } from './util.service.js'
-
 import Axios from 'axios'
 
 var axios = Axios.create({
@@ -15,12 +11,29 @@ export const bugService = {
     getById,
     save,
     remove,
+    getDefaultFilter,
 }
 
 
-async function query() {
-    var res = await axios.get(BASE_URL)
-    var bugs = res.data
+// async function query() {
+//     var res = await axios.get(BASE_URL)
+//     var bugs = res.data
+
+//     return bugs
+// }
+
+async function query(filterBy = {}) {
+
+    var {data:bugs} = await axios.get(BASE_URL)
+
+    if (filterBy.title){
+        const regExp = new RegExp(filterBy.title, 'i')
+        bugs = bugs.filter(bug => regExp.test(bug.title))
+    }
+    
+    if (filterBy.severity){
+        bugs = bugs.filter(bug => bug.severity >= filterBy.severity)
+    }
 
     return bugs
 }
@@ -40,4 +53,8 @@ async function save(bug) {
 
     const res = await axios.get(BASE_URL + queryStr)
     return res.data
+}
+
+function getDefaultFilter() {
+	return { title: '', severity: '' }
 }
